@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+fimport React, { Component } from "react";
 import Calendar from "react-big-calendar";
 import moment from "moment";
 import withDragAndDrop from "react-big-calendar/lib/addons/dragAndDrop";
@@ -25,33 +25,7 @@ class App extends Component {
         end: new Date(moment().add(1, "days")),
         title: "Some title"
       },
-      {
-        start: new Date('04/5/2019 14:0:0'),
-        end: new Date('04/6/2019 1:0:0'),
-        title: "Second event",
-        allDay: false
-      },
-      {
-        start: new Date('04/5/2019 14:0:0'),
-        end: new Date('04/6/2019 1:0:0'),
-        title: "Second event",
-        allDay: false
-      },{
-        start: new Date('04/5/2019 14:0:0'),
-        end: new Date('04/6/2019 1:0:0'),
-        title: "Second event",
-        allDay: false
-      },{
-        start: new Date('04/5/2019 14:0:0'),
-        end: new Date('04/6/2019 1:0:0'),
-        title: "Second event",
-        allDay: false
-      },{
-        start: new Date('04/5/2019 14:0:0'),
-        end: new Date('04/6/2019 1:0:0'),
-        title: "Second event",
-        allDay: false
-      },{
+	    {
         start: new Date('04/5/2019 14:0:0'),
         end: new Date('04/6/2019 1:0:0'),
         title: "Second event",
@@ -59,7 +33,6 @@ class App extends Component {
       },
     ]
   };
-  
 
 
   onEventResize = ({ event, start, end}) => {
@@ -79,25 +52,20 @@ class App extends Component {
       return { events: state.events};
     });
   }; 
-//fonction test
+
+
   onView=(str)=> {
     this.setState(state => {
       state.view = str;
       return state
     })
-
   }
+  
+  
   aff=(a,b)=>{
     console.log(a,b);
   }
-
-  onClick=({slots, start, end,action})=>{
-   // console.log()
-
-
-    
-  }
-//test fonction
+  
 
   render() {
     return (
@@ -112,15 +80,10 @@ class App extends Component {
           onEventDrop={this.onEventDrop}
           onEventResize={this.onEventResize}
           drilldownView="week"
-  //test 
-
           onSelectSlot={this.aff}
           onView={this.onView}
           //onSelectEvent={this.aff}
-
           selectable
-//fin test
-
           resizable
           style={{ height: "100vh" }}          
         />
