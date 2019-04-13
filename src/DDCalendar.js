@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Calendar from "react-big-calendar";
-import moment from "moment";
 import withDragAndDrop from "react-big-calendar/lib/addons/dragAndDrop";
 import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
@@ -23,43 +22,7 @@ const dnd = false
 const DnDCalendar = DnD(dnd)
 
 class DDCalendar extends Component {
-  state = {
-    events: [
-      {
-        start: new Date(),
-        end: new Date(moment().add(1, "days")),
-        title: "Some title",
-        worker: "worker1"
-      },
-	    {
-        start: new Date('04/5/2019 14:0:0'),
-        end: new Date('04/6/2019 1:0:0'),
-        title: "Second event",
-        allDay: false,
-        worker: "worker2"
-      },{
-        start: new Date('04/5/2019 14:0:0'),
-        end: new Date('04/6/2019 1:0:0'),
-        title: "Second event",
-        allDay: false,
-        worker: "worker1"
-      },
-    ],
-    //Dictionnary assigning a color to each worker
-    workers: [
-      {
-        "name": "worker1",
-       "color":"red"
-      },
-      {
-        "name":"worker2",
-       "color": "green"
-      }
-    ]
-  };
-  
-
-
+  state = {}
   onEventResize = ({ event, start, end}) => {
     console.log(event);
     this.setState(state => {
@@ -97,7 +60,7 @@ class DDCalendar extends Component {
     
   */
  eventPropGetter = (event) => {
-  const color = this.state.workers.filter(worker => worker.name === event.worker)[0].color
+  const color = this.props.workers.filter(worker => worker.name === event.worker)[0].color
   return {style: {backgroundColor: color}}
   
  }
@@ -115,7 +78,7 @@ class DDCalendar extends Component {
           
           defaultDate={new Date()}
           defaultView="month"
-          events={this.state.events}
+          events={this.props.events}
           onEventDrop={this.onEventDrop}
           onEventResize={this.onEventResize}
           drilldownView="week"
