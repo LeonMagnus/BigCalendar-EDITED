@@ -46,10 +46,16 @@ class DDCalendar extends Component {
       },
     ],
     //Dictionnary assigning a color to each worker
-    workers: {
-      "worker1": "red",
-      "worker2": "green"
-    }
+    workers: [
+      {
+        "name": "worker1",
+       "color":"red"
+      },
+      {
+        "name":"worker2",
+       "color": "green"
+      }
+    ]
   };
   
 
@@ -91,7 +97,7 @@ class DDCalendar extends Component {
     
   */
  eventPropGetter = (event) => {
-  const color = this.state.colors[event.worker]
+  const color = this.state.workers.filter(worker => worker.name === event.worker)[0].color
   return {style: {backgroundColor: color}}
   
  }

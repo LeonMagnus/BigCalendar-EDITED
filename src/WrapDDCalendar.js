@@ -8,6 +8,7 @@
 import React, { Component } from "react";
 import DDCalendar from "./DDCalendar";
 import "./DD.css"
+import Workers from "./Workers"
 
 class WrapDDCalendar extends Component {
 
@@ -17,7 +18,14 @@ class WrapDDCalendar extends Component {
         <div className="ddwrapper">
             <DDCalendar/>
         </div>
-        <div className="sidebar">HH</div>
+        <div className="sidebar">
+            <div className="addEvent">
+            Add event
+            </div>
+            <div className="workers">
+             <Workers />
+            </div>
+        </div>
         </div>
   )
 }
