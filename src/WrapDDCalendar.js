@@ -28,21 +28,40 @@ class WrapDDCalendar extends Component {
             worker: "worker1"
           },
         ],
+        allEvents: [
+          {
+          start: new Date('04/5/2019 14:0:0'),
+          end: new Date('04/6/2019 1:0:0'),
+          title: "Second event",
+          allDay: false,
+          worker: "worker2"
+        },{
+          start: new Date('04/5/2019 14:0:0'),
+          end: new Date('04/6/2019 1:0:0'),
+          title: "Second event",
+          allDay: false,
+          worker: "worker1"
+        },
+      ],
         //Dictionnary assigning a color to each worker
         workers: [
           {
             "name": "worker1",
-           "color":"red"
+           "color":"red",
+           "checked":true
           },
           {
             "name":"worker2",
-           "color": "green"
+           "color": "green",
+           "checked":true
           },
           {
               "name": "",
-              "color": "black"
+              "color": "black",
+              "checked":true
           }
-        ]
+        ],
+        checkedWorkers: ["worker1", "worker2", "worker3"]
       };
 
     onNewEvent = e => {
@@ -59,6 +78,16 @@ class WrapDDCalendar extends Component {
           return state;
           })
     }
+   onChange = events =>{
+     const e=events;
+      this.setState(state=>{
+        state.events=e;
+      return state;}
+      )
+
+   } 
+
+    
   render() {
     return (
         <div className="wrapper">
@@ -70,7 +99,7 @@ class WrapDDCalendar extends Component {
                 <AddEvent onNewEvent={this.onNewEvent} workers={this.state.workers}/>
             </div>
             <div className="workers">
-             <Workers  onColorChange={this.onColorChange}/>
+             <Workers  onColorChange={this.onColorChange} onChange={this.onChange} allEvents={this.state.allEvents} workers={this.state.workers}/>
             </div>
         </div>
         </div>
@@ -79,10 +108,3 @@ class WrapDDCalendar extends Component {
 }
 
 export default WrapDDCalendar
-
-
-
-
-
-
-//onColorChange={this.onColorChange}
