@@ -45,7 +45,8 @@ class DDCalendar extends Component {
         worker: "worker1"
       },
     ],
-    colors: {
+    //Dictionnary assigning a color to each worker
+    workers: {
       "worker1": "red",
       "worker2": "green"
     }
