@@ -4,7 +4,8 @@ import React, {Component} from 'react'
 class Workers extends Component {
     state = {
       workers: this.props.workers,
-      allEvents: this.props.allEvents
+      allEvents: this.props.allEvents,
+      checkedWorkers: ["worker1", "worker2",""]
     }
 
 
@@ -15,7 +16,14 @@ class Workers extends Component {
 
 
     onChange = (event)=>{
+      event.target.checked?
       
+      this.state.checkedWorkers.push(event.target.value):
+      this.state.checkedWorkers=this.state.checkedWorkers.filter(worcker=>worcker !==event.target.value)
+
+      let e= this.state.allEvents.filter(workers=> this.state.checkedWorkers.includes(workers.worker))
+      
+      this.props.onChange(e)
     }
 
 
@@ -24,7 +32,10 @@ class Workers extends Component {
 
 
         return (
-            this.state.workers.map(worker => <div ><input type="checkbox" key={worker} defaultChecked={worker.checked} onChange={this.onChange} name="workers"  value={worker.name} />{worker.name} <input type="color" id={worker.name} onChange={this.onColorChange} name="color" defaultValue={worker.color}/> </div>)
+            this.state.workers.map(worker => <div key={worker.name}>
+            <input type="checkbox"  defaultChecked={worker.checked} onChange={this.onChange} name="workers"  value={worker.name} />{worker.name} 
+            <input type="color" id={worker.name} onChange={this.onColorChange} name="color" defaultValue={worker.color}/> 
+            </div>)
         )
     }
 }
