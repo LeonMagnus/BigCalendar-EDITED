@@ -5,6 +5,10 @@
   * Displaying workers and possibility to  only choose one | X
   * Setting colors for each worker | X
   * (Optional) Possibility to directly drag an event from the sidebar to the Calendar
+   
+   
+  BUGS to fix:
+  * Disable adding an event that ends before it begins
 */
 
 import "./App.css";

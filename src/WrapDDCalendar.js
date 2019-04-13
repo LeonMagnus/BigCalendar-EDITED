@@ -45,12 +45,19 @@ class WrapDDCalendar extends Component {
         ]
       };
 
-    onNewEvent = (e) => {
+    onNewEvent = e => {
         this.setState(state => {
             state.events.push(e)
             return state
         })
         
+    }
+    onColorChange = eventObject => {
+      const e = eventObject.target
+        this.setState(state => {
+            state.workers.filter(worker => worker.name === e['id'])[0].color= e.value;
+          return state;
+          })
     }
   render() {
     return (
@@ -63,7 +70,7 @@ class WrapDDCalendar extends Component {
                 <AddEvent onNewEvent={this.onNewEvent} workers={this.state.workers}/>
             </div>
             <div className="workers">
-             <Workers />
+             <Workers  onColorChange={this.onColorChange}/>
             </div>
         </div>
         </div>
@@ -72,3 +79,10 @@ class WrapDDCalendar extends Component {
 }
 
 export default WrapDDCalendar
+
+
+
+
+
+
+//onColorChange={this.onColorChange}

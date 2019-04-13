@@ -16,7 +16,7 @@ require('globalize/lib/cultures/globalize.culture.fr')
 const DnD = dnd => dnd ? withDragAndDrop(Calendar) : Calendar
 const localizer=Calendar.globalizeLocalizer(globalize);
 
-const dnd = false
+const dnd = true
 
 //Call to DnD function
 const DnDCalendar = DnD(dnd)
@@ -60,9 +60,9 @@ class DDCalendar extends Component {
     
   */
  eventPropGetter = (event) => {
-  const color = this.props.workers.filter(worker => worker.name === event.worker)[0].color
+  let color = this.props.workers.filter(worker => worker.name === event.worker)[0]
+  color = color === undefined ? 'black' : color.color
   return {style: {backgroundColor: color}}
-  
  }
   
 
