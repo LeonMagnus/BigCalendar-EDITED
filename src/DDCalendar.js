@@ -24,29 +24,17 @@ const DnDCalendar = DnD(dnd)
 class DDCalendar extends Component {
   state = {}
   onEventResize = ({ event, start, end}) => {
-    console.log(event);
-    this.setState(state => {
-      event.start = start;
-      event.end = end;  
-      return { events: state.events };
-    });
+      this.props.onEventResize(event, start, end)
   };
 
 
    onEventDrop = ({ event, start, end }) => {
-    this.setState(state => {
-      event.start = start;
-      event.end = end;
-      return { events: state.events};
-    });
+    this.props.onEventDrop(event, start, end)
   }; 
 
 
   onView=(str)=> {
-    this.setState(state => {
-      state.view = str;
-      return state
-    })
+    this.props.onView(str)
   }
   
   
@@ -60,8 +48,7 @@ class DDCalendar extends Component {
     
   */
  eventPropGetter = (event) => {
-  let color = this.props.workers.filter(worker => worker.name === event.worker)[0]
-  color = color === undefined ? 'black' : color.color
+  let color = event.color === undefined ? 'black' : color.color
   return {style: {backgroundColor: color}}
  }
   

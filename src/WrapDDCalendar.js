@@ -19,13 +19,15 @@ class WrapDDCalendar extends Component {
             end: new Date('04/6/2019 1:0:0'),
             title: "Second event",
             allDay: false,
-            worker: "worker2"
+            worker: "worker2",
+            color: "red"
           },{
             start: new Date('04/5/2019 14:0:0'),
             end: new Date('04/6/2019 1:0:0'),
             title: "Second event",
             allDay: false,
-            worker: "worker1"
+            worker: "worker1",
+            color: "blue"
           },
         ],
         allEvents: [
@@ -34,13 +36,15 @@ class WrapDDCalendar extends Component {
           end: new Date('04/6/2019 1:0:0'),
           title: "Second event",
           allDay: false,
-          worker: "worker2"
+          worker: "worker2",
+          color: "red"
         },{
           start: new Date('04/5/2019 14:0:0'),
           end: new Date('04/6/2019 1:0:0'),
           title: "Second event",
           allDay: false,
-          worker: "worker1"
+          worker: "worker1",
+          color: "blue"
         },
       ],
         //Dictionnary assigning a color to each worker
@@ -78,6 +82,23 @@ class WrapDDCalendar extends Component {
           return state;
           })
     }
+
+    onEventResize = () => {
+        this.setState(state => {
+          event.start = start;
+          event.end = end;  
+          return { events: state.events };
+        });
+    }
+
+    onEventDrop = (event, start, end) => {
+      this.setState(state => {
+        event.start = start;
+        event.end = end;
+        return { events: state.events};
+      });
+    }
+
    onChange = events =>{
      const e=events;
       this.setState(state=>{
@@ -86,6 +107,12 @@ class WrapDDCalendar extends Component {
       )
 
    } 
+   onView = str => {
+    this.setState(state => {
+      state.view = str;
+      return state
+    })
+   }
 
     
   render() {
