@@ -3,9 +3,7 @@ import React, {Component} from 'react'
 class Workers extends Component {
     state = {
       workers: this.props.allEvents.map(event => {return {name:event.worker, color:event.color, checked: true}}).filter((worker, count, workers) => !workers.slice(0,count).includes(worker)),
-      
-      allEvents: this.props.allEvents,
-      checkedWorkers: ["worker1", "worker2",""]
+    
     }
 
 
@@ -16,14 +14,11 @@ class Workers extends Component {
 
 
     onChange = (event)=>{
+      let isCheck=this.props.checkedWorkers
       event.target.checked?
-      
-      this.state.checkedWorkers.push(event.target.value):
-      this.state.checkedWorkers=this.state.checkedWorkers.filter(worcker=>worcker !==event.target.value)
-
-      let e= this.state.allEvents.filter(workers=> this.state.checkedWorkers.includes(workers.worker))
-      
-      this.props.onChange(e)
+      isCheck=isCheck.concat(event.target.value):
+      isCheck=isCheck.filter(worcker=>worcker !==event.target.value)
+      this.props.onChange(isCheck)
     }
 
 
