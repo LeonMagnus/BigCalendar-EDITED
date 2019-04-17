@@ -48,7 +48,7 @@ class DDCalendar extends Component {
     
   */
  eventPropGetter = (event) => {
-  let color = event.color === undefined ? 'black' : color.color
+  let color = event.color === undefined ? 'black' : event.color
   return {style: {backgroundColor: color}}
  }
   

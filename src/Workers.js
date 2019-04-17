@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
 
-
 class Workers extends Component {
     state = {
-      workers: this.props.workers,
+      workers: this.props.allEvents.map(event => {return {name:event.worker, color:event.color, checked: true}}).filter((worker, count, workers) => !workers.slice(0,count).includes(worker)),
+      
       allEvents: this.props.allEvents,
       checkedWorkers: ["worker1", "worker2",""]
     }
@@ -32,10 +32,18 @@ class Workers extends Component {
 
 
         return (
-            this.state.workers.map(worker => <div key={worker.name}>
-            <input type="checkbox"  defaultChecked={worker.checked} onChange={this.onChange} name="workers"  value={worker.name} />{worker.name} 
-            <input type="color" id={worker.name} onChange={this.onColorChange} name="color" defaultValue={worker.color}/> 
-            </div>)
+          <form className="form">
+            {this.state.workers.map(worker => {
+              return (<div className="div" key={worker.name}>
+            <input type="checkbox"  defaultChecked={worker.checked} onChange={this.onChange} name="workers"  value={worker.name} id={worker.name} className="radio visuallyhidden"/><label className="label" htmlFor={worker.name}>{worker.name}
+              <span className="color"><input type="color" id={worker.name} className="field-radio primary_color" onChange={this.onColorChange} name="color" defaultValue={worker['color']} />
+              <span className="color_val"></span></span>
+          </label>
+            
+
+             
+            </div>)})}
+            </form>
         )
     }
 }

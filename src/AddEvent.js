@@ -41,7 +41,9 @@ class AddEvent extends Component {
         
         return (
             <Popup
-            trigger={<button className="button"> Create a new event </button>}
+            trigger={<button className="button">
+                <span>Ajouter</span>
+            </button>}
             modal
             closeOnDocumentClick
           >
