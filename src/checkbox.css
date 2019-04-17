@@ -89,9 +89,6 @@ input.radio:focus ~ label:before {
     -webkit-appearance: none;
     display: inline-block;
 }
-.primary_color:hover {
-    //cursor:pointer
-}
 
 .primary_color::-webkit-color-swatch-wrapper {
     padding: 0;	
