@@ -48,25 +48,23 @@ class WrapDDCalendar extends Component {
           color: "#0000ff"
         },
       ],
+      checkedWorkers:["worker1", "worker2", "worker3"],
         //Dictionnary assigning a color to each worker
         workers: [
           {
             "name": "worker1",
-           "color":"#ff0000",
-           "checked":true
+           "color":"#ff0000"
           },
           {
             "name":"worker2",
-           "color": "#0000ff",
-           "checked":true
+           "color": "#0000ff"
           },
           {
             "name": "",
-            "color": "#000000",
-            "checked":true
+            "color": "#000000"
           }
-        ],
-        checkedWorkers: ["worker1", "worker2", "worker3"]
+        ]
+
       };
 
     onNewEvent = e => {
@@ -105,14 +103,10 @@ class WrapDDCalendar extends Component {
       });
     }
 
-   onChange = events =>{
-     const e=events;
-      this.setState(state=>{
-        state.events=e;
-      return state;}
-      )
-
-   } 
+   onChange = checked =>{
+     let e=this.state.allEvents.filter(workers=>checked.includes(workers.worker));
+      this.setState(state=> {return{events:e ,checkedWorkers:checked}})
+   }
    onView = str => {
     this.setState(state => {
       state.view = str;
@@ -146,6 +140,7 @@ class WrapDDCalendar extends Component {
                onChange={this.onChange} 
                allEvents={this.state.allEvents} 
                workers={this.state.workers}
+               checkedWorkers={this.state.checkedWorkers}
                />
             </div>
         </div>
