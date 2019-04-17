@@ -30,7 +30,7 @@ class Workers extends Component {
           <form className="form">
             {this.state.workers.map(worker => {
               return (<div className="div" key={worker.name}>
-            <input type="checkbox"  defaultChecked={worker.checked} onChange={this.onChange} name="workers"  value={worker.name} id={worker.name} className="radio visuallyhidden"/><label className="label" htmlFor={worker.name}>{worker.name}
+            <input type="checkbox"  defaultChecked={worker.checked} onChange={this.onChange} name="workers"  value={worker.name} id={worker.name} className="radio"/><label className="label" htmlFor={worker.name}>{worker.name}
               <span className="color"><input type="color" id={worker.name} className="field-radio primary_color" onChange={this.onColorChange} name="color" defaultValue={worker['color']} />
               <span className="color_val"></span></span>
           </label>
