@@ -23,7 +23,8 @@ label.label {
 
 /* hide input */
 input.radio:empty {
-	margin-left: -200000px;
+	margin-left: -2000px;
+	position: absolute
 }
 
 /* style label */
