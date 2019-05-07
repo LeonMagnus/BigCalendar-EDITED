@@ -16,55 +16,35 @@ class WrapDDCalendar extends Component {
     state = {
         events: [
             {
+            id: Symbol(),
             start: new Date('04/5/2019 14:0:0'),
             end: new Date('04/6/2019 1:0:0'),
             title: "Second event",
             allDay: false,
             worker: "worker1",
-            color: "#ff0000"
+            color: "#ff0000",
+            show: true
           },{
+            id: Symbol(),
             start: new Date('04/5/2019 14:0:0'),
             end: new Date('04/6/2019 1:0:0'),
             title: "Second event",
             allDay: false,
             worker: "worker2",
-            color: "#0000ff"
-          },
-        ],
-        allEvents: [
-          {
-          start: new Date('04/5/2019 14:0:0'),
-          end: new Date('04/6/2019 1:0:0'),
-          title: "Second event",
-          allDay: false,
-          worker: "worker1",
-          color: "#ff0000"
-        },{
-          start: new Date('04/5/2019 14:0:0'),
-          end: new Date('04/6/2019 1:0:0'),
-          title: "Second event",
-          allDay: false,
-          worker: "worker2",
-          color: "#0000ff"
-        },
-      ],
-      checkedWorkers:["worker1", "worker2", "worker3"],
-        //Dictionnary assigning a color to each worker
-        workers: [
-          {
-            "name": "worker1",
-           "color":"#ff0000"
+            color: "#0000ff",
+            show: true
           },
           {
-            "name":"worker2",
-           "color": "#0000ff"
-          },
-          {
-            "name": "",
-            "color": "#000000"
+            id: Symbol(),
+            start: new Date('04/5/2019 14:0:0'),
+            end: new Date('04/6/2019 1:0:0'),
+            title: "Second event",
+            allDay: false,
+            worker: "worker1",
+            color: "#ff0000",
+            show: true
           }
         ]
-
       };
 
     onNewEvent = e => {
@@ -102,10 +82,12 @@ class WrapDDCalendar extends Component {
         return { events: state.events};
       });
     }
-
-   onChange = checked =>{
-     let e=this.state.allEvents.filter(workers=>checked.includes(workers.worker));
-      this.setState(state=> {return{events:e ,checkedWorkers:checked}})
+// Whenever the checked status of an event is changed
+   onChange = (name, checked) =>{
+     this.setState(state => {
+       state.events.filter(e => e.worker === name).map(e => e.show = checked)
+       return state;
+     })
    }
    onView = str => {
     this.setState(state => {
@@ -120,7 +102,7 @@ class WrapDDCalendar extends Component {
         <div className="wrapper">
         <div className="ddwrapper">
             <DDCalendar
-            events={this.state.events}
+            events={this.state.events.filter(event => event.show)}
             workers={this.state.workers}
             onEventResize={this.onEventResize}
             onEventDrop={this.onEventDrop}
@@ -138,10 +120,18 @@ class WrapDDCalendar extends Component {
              <Workers
                onColorChange={this.onColorChange}
                onChange={this.onChange} 
-               allEvents={this.state.allEvents} 
-               workers={this.state.workers}
-               checkedWorkers={this.state.checkedWorkers}
-               />
+               events={this.state.events} 
+               workers={
+                 this.state.events.map(event => {
+                return {
+                  name:event.worker,
+                  color:event.color,
+                  checked: true
+                }
+              }
+              ).filter((worker, count, workers) => !workers.slice(0,count).map(worker => worker.name).includes(worker.name))
+              }
+             />
             </div>
         </div>
         </div>
